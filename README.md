@@ -17,6 +17,7 @@ Initial Description and Link:
 * [tidyverse CREATE: using the `purrr` package with data](https://github.com/annejscott/DATA607/raw/main/assignments/tidyverse/straumanscott-tidyverse-purr.rmd)
 
 Revision/Addition Description and Link:
+* Extended Dhanya's multi-package analysis by using the tools on more variables.
 
 
 # Alexander S
