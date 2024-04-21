@@ -138,3 +138,63 @@ major_category_long  %>%
   scale_fill_manual(values = c("blue", "pink")) +coord_flip()
 
 ```
+
+# EXTEND Assignment
+
+Packages being used are purr,dplyr, stringr, forcats within the tidyverse package, as above.
+
+## Q: What is the median compensation for different major categories?
+## A: Use ggplot to compare various major category median compensation.
+
+```{r}
+#summarize to a table aggregating major category and summary statistics
+major_salary <- college_grads  %>%
+  group_by(Major_category) %>%
+  summarize(avg_comp = mean(Median, na.rm = TRUE),
+            avg_share_women = round(mean(ShareWomen, na.rm = TRUE), 3),
+            avg_unemployed = round(mean(Unemployment_rate, na.rm = TRUE),3)) 
+```
+```{r}
+#visualize the data with ggplot
+major_salary %>%
+  mutate(Major_category = reorder(Major_category, avg_comp)) %>%
+  ggplot(aes(x = Major_category, y = avg_comp)) + 
+  geom_col(position = "dodge") +
+  labs(title = "Average Median Salary by College Major Category",
+       x = "College Major Category",
+       y = "Average Median Salary") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Q: What is the distribution of median salary by share of women in the major category?
+## A: Use ggplot to create an analyze a scatterplot.
+```{r, warning=FALSE}
+ggplot(college_grads, aes(x = ShareWomen, y = Median)) +
+  geom_point() +
+  labs(title = "Median Salary verses Proportion of Graduates who are Women",
+       x = "Proportion of Women",
+       y = NULL)
+```
+
+## Fit a Linear Regression Line
+
+```{r, warning=FALSE}
+ggplot(college_grads, aes(x = ShareWomen, y = Median)) +
+  geom_point() +
+  labs(title = "Median Salary verses Proportion of Graduates who are Women",
+       x = "Proportion of Women",
+       y = NULL) +
+  geom_smooth(method = "lm")
+```
+
+## Do the same thing for proportion of women in each major and percent unemployed
+
+```{r, warning=FALSE}
+ggplot(college_grads, aes(x = (ShareWomen*100), 
+                          y = (Unemployment_rate*100))) +
+  geom_point() +
+  labs(title = "Unemployment verses Proportion of Women",
+       x = "Proportion of Women",
+       y = "Percent Unemployed") +
+  geom_smooth(method = "lm")
+```
