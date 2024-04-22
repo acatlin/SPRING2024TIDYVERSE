@@ -1,0 +1,45 @@
+---
+title: "Tidyverse Extend"
+author: "Anthony Conrardy and Evelyn Bartley"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidyr)
+library(kableExtra)
+```
+
+
+Data obtained from Kaggle website at "https://www.kaggle.com/datasets/utkarshx27/electric-vehicle-population-data"  It is in CSV format and located on Anthony's GitHub site at "https://raw.githubusercontent.com/Aconrard/DATA606/main/Tidyverse%20Project/Electric_Vehicle_Population_Data.csv"
+
+```{r EVS}
+url <- "https://raw.githubusercontent.com/Aconrard/DATA606/main/Tidyverse%20Project/Electric_Vehicle_Population_Data.csv"
+ev_data <- read.csv(url)
+```
+
+### Tidyverse Package-Tidyr Extension ![Logo](C:/Users/para2/Documents/R_Working_Directory/tidyr_logo.png){width=10%}
+
+For this assignment vignette we will be using the Tidyr package for R.  This package has various tools for reshaping and tidying data to perform data analysis and visualization.  There are some very powerful functions that can be leveraged from the package including pivot_longer, pivot_wider, splitting and combining cells, and creating, reshaping, and transforming nested data.  
+
+![](C:/Users/para2/Documents/R_Working_Directory/tidyr-thumbs.png)
+
+### Data Source and Selection
+
+The dataset selected is available on the Kaggle website and provides data on Electric Vehicles in the state of Washington.  This dataset lends itself readily for tidying and transforming with the Tidyr package. There 17 variables that include county, city, year, make, model of car, electric vehicle type. There are over 135,000 observations.
+
+### Tidyr Vignette Extension
+
+### Use unite() to join more than one column into one.
+
+We can use unite() to make one column that includes the information from the county and city columns.
+```{r}
+ev_data %>%
+  unite("County, City", County:City, sep = ", ")
+
+```
+
+
+
