@@ -39,6 +39,8 @@ Initial Description and Link: functions in dplyer and ggplot in the idyverse pac
 * https://github.com/Aconrard/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd
 
 Revision/Addition Description and Link:
+Extension of the use of unite() in Tidyr.
+https://github.com/evelynbartley/SPRING2024TIDYVERSE/blob/main/TidyVerse%20EXTEND%20Tidyr.Rmd
 
 # Brandon C
 
