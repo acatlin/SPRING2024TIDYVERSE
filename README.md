@@ -29,6 +29,8 @@ Initial Description and Link: Demonstrates how to use the `across()` function fr
 
 Revision/Addition Description and Link:
 
+Lucas extended the assignment, see below:
+
 # Angel G
 
 Initial Description and Link: functions in dplyer and ggplot in the idyverse package <https://github.com/Angelogallardo05/DATA607-tidyverse/blob/main/TIDYVERSE%20Assignment_NYC_House.Rmd> Revision/Addition Description and Link:
