@@ -31,6 +31,8 @@ Revision/Addition Description and Link:
 
 Lucas extended the assignment, see below:
 
+https://github.com/lucasweyrich958/SPRING2024TIDYVERSE/blob/main/Alexander_Simon_dplyr_across.Rmd
+
 # Angel G
 
 Initial Description and Link: functions in dplyer and ggplot in the idyverse package <https://github.com/Angelogallardo05/DATA607-tidyverse/blob/main/TIDYVERSE%20Assignment_NYC_House.Rmd> Revision/Addition Description and Link:
