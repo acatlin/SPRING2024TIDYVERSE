@@ -144,6 +144,9 @@ Initial Description and Link: Demonstrates the use of TidyVerse package.
 
 Revision/Addition Description and Link:
 
+Extend James Naval Tidyverse Create
+https://github.com/Zcash95/SPRING2024TIDYVERSE/blob/main/TidyverseAssignment.Rmd
+
 # Zixian L
 
 Initial Description and Link:
