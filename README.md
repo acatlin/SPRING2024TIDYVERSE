@@ -39,6 +39,9 @@ Initial Description and Link: functions in dplyer and ggplot in the idyverse pac
 * https://github.com/Aconrard/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd
 
 Revision/Addition Description and Link:
+* This is an extension of Angel's assignment.  Did not see that Dhanya did something similar.  Use leaflet package to create name and location markers for propertyy mapping.
+* <https://github.com/Aconrard/SPRING2024TIDYVERSE/blob/main/TIDYVERSE%20Assignment_NYC_House_042824.Rmd>
+
 
 # Brandon C
 
