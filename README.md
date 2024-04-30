@@ -1,8 +1,8 @@
 # SPRING2024TIDYVERSE
 
 # Victor Torres
-Initial Description and Link: Work with Club Soccer Predictions from "fivethirtyeight.com" page, to demostrate how to tidy datasets with dplyr, tidyr, ggplot2, and Kable 
-https://github.com/vitugo23/DATA607/blob/main/tidyverse_project/tidyverse_project.Rmd
+
+Initial Description and Link: Work with Club Soccer Predictions from "fivethirtyeight.com" page, to demostrate how to tidy datasets with dplyr, tidyr, ggplot2, and Kable <https://github.com/vitugo23/DATA607/blob/main/tidyverse_project/tidyverse_project.Rmd>
 
 # Sample
 
@@ -11,9 +11,8 @@ Initial Description and Link: \* Demonstrates how to flip ggplot axes \* [https:
 Revision/Addition Description and Link: \* Modified ggplot/forcats example to demonstrate sorting, other category \* [https://github.com/acatlin/FALL2021TIDYVERSE/blob/main/ggplot_forcats.rmd](https://github.com/acatlin/SPRING2024TIDYVERSE/blob/main/ggplot_forcats.rmd)<https://github.com/acatlin/SPRING2024TIDYVERSE/blob/main/ggplot_forcats.rmd>
 
 # Rivera R
-Iniital Description and Link:
-* Demonstrates how to use the `emo` package with `dplyr` and `ggplot`
-* [https://github.com/riverar9/SPRING2024TIDYVERSE/blob/main/Rivera_Tidyverse_ggplot_emo.rmd](https://github.com/riverar9/SPRING2024TIDYVERSE/blob/main/Rivera_Tidyverse_ggplot_emo.rmd)
+
+Iniital Description and Link: \* Demonstrates how to use the `emo` package with `dplyr` and `ggplot` \* <https://github.com/riverar9/SPRING2024TIDYVERSE/blob/main/Rivera_Tidyverse_ggplot_emo.rmd>
 
 # AJ S
 
@@ -27,7 +26,9 @@ Initial Description and Link: Demonstrates how to use the `across()` function fr
 
 <https://github.com/alexandersimon1/SPRING2024TIDYVERSE/blob/main/Alexander_Simon_dplyr_across.Rmd>
 
-Revision/Addition Description and Link:
+Revision/Addition Description and Link: Extended AJ's `purr` vignette to demonstrate applications of other variants of `map()`.
+
+<https://github.com/alexandersimon1/SPRING2024TIDYVERSE/blob/main/straumanscott-tidyverse-purr_Alexander_Simon_edit.rmd>
 
 Lucas extended the assignment, see below:
 
@@ -39,8 +40,8 @@ Initial Description and Link: functions in dplyer and ggplot in the idyverse pac
 
 # Anthony C
 
-* Demonstrate the use of the unite, separate, and pivot_wider functions of the Tidyr package in Tidyverse.
-* https://github.com/Aconrard/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd
+-   Demonstrate the use of the unite, separate, and pivot_wider functions of the Tidyr package in Tidyverse.
+-   <https://github.com/Aconrard/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd>
 
 Revision/Addition Description and Link:
 
@@ -48,19 +49,13 @@ Revision/Addition Description and Link:
 
 Initial Description and Link: \* Demonstrates how to use multple functions from dplyr and ggplot2 to showcase the reults \* [https://github.com/acatlin/SPRING2024TIDYVERSE/blob/main/Cunningham_Tidyverse.rmd](https://github.com/acatlin/SPRING2024TIDYVERSE/blob/main/Cunningham_Tidyverse.Rmd)
 
-Revision/Addition Description and Link: \*Extended Biyag Dukuray's vignette on ggplot2, specifically showing off breaking down bar graphs will fill into different groups and many of the different properties of scatterplots available in ggplot2.\*
-<https://github.com/btc2628/SPRING2024TIDYVERSE/blob/main/DATA%20607%20TidyVerse%20Create.Rmd>
+Revision/Addition Description and Link: \*Extended Biyag Dukuray's vignette on ggplot2, specifically showing off breaking down bar graphs will fill into different groups and many of the different properties of scatterplots available in ggplot2.\* <https://github.com/btc2628/SPRING2024TIDYVERSE/blob/main/DATA%20607%20TidyVerse%20Create.Rmd>
 
 # Dhanya A
 
-Initial Description and Link: The Create Tidy verse Assignment using purr,dplyr, stringr, forcats within the tidyverse package.
-<https://raw.githubusercontent.com/datanerddhanya/SPRING2024TIDYVERSE/main/Dhanya_Nair_DATA607Assignment8.Rmd>
+Initial Description and Link: The Create Tidy verse Assignment using purr,dplyr, stringr, forcats within the tidyverse package. <https://raw.githubusercontent.com/datanerddhanya/SPRING2024TIDYVERSE/main/Dhanya_Nair_DATA607Assignment8.Rmd>
 
-Revision/Addition Description and Link: 
-Extended Angel's TIDYVERSE Assignment_NYC_House.Rmd file to tidy the data, add sumamries and visualize it
-<https://raw.githubusercontent.com/datanerddhanya/SPRING2024TIDYVERSE/main/TIDYVERSE%20Assignment_NYC_House.Rmd>
-
-
+Revision/Addition Description and Link: Extended Angel's TIDYVERSE Assignment_NYC_House.Rmd file to tidy the data, add sumamries and visualize it <https://raw.githubusercontent.com/datanerddhanya/SPRING2024TIDYVERSE/main/TIDYVERSE%20Assignment_NYC_House.Rmd>
 
 # Evelyn B
 
@@ -120,7 +115,7 @@ Revision/Addition Description and Link:
 
 Initial Description and Link: \* Demonstrates the use of readr,dplyr,ggplot2 and their functions to analyse the dataset.
 
-Revision/Addition Description and Link: Extended Anthony Conrady's vignette by adding `ggplot2`  and generated 3 different plots using ggplots functions. https://github.com/NikoletaEm/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd
+Revision/Addition Description and Link: Extended Anthony Conrady's vignette by adding `ggplot2` and generated 3 different plots using ggplots functions. <https://github.com/NikoletaEm/SPRING2024TIDYVERSE/blob/main/Tidyverse_Conrardy.Rmd>
 
 # Peter T
 
@@ -163,4 +158,4 @@ Revision/Addition Description and Link:
 
 Extended Anthony Conrardy's vignette on ggplot2 in order to illustrate the data in a clear and intuitive manner.
 
-https://github.com/ZIXIANNOW/SPRING2024TIDYVERSE/blob/main/Extension%20from%20ZIXIAN%20LIANG%20for%20Tidyverse_Conrardy.Rmd
+<https://github.com/ZIXIANNOW/SPRING2024TIDYVERSE/blob/main/Extension%20from%20ZIXIAN%20LIANG%20for%20Tidyverse_Conrardy.Rmd>
