@@ -1,0 +1,186 @@
+---
+title: "TIDYVERSE Assignment"
+author: "angel"
+date: "2024-04-07"
+output: html_document
+---
+
+## Task: to create a vignette that demonstrates how to use one or more of the capabilities of the selected TidyVerse package with your selected dataset.
+
+# The data set that I will be using is the current homes for sale in NY
+#https://www.kaggle.com/datasets/nelgiriyewithana/new-york-housing-market
+
+#I will be demonstrating how to use  package with readr, dplyr,ggplot2 
+```{r}
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+```
+
+
+#read the csv for data on current house for sales in NY
+```{r}
+df <- read.csv("https://raw.githubusercontent.com/Angelogallardo05/Data606-proposal/main/NY-House-Dataset.csv")
+```
+
+```{r}
+head(df,3)
+```
+
+# dplyr
+
+#Remove NA 
+```{r warning=FALSE}
+df <- df %>%
+  na.omit(df)%>%
+  mutate(PRICE = as.numeric(PRICE))
+```
+
+#mutate to combine Queens County with Queens
+```{r}
+df <- df %>%
+  mutate(SUBLOCALITY = case_when(
+    SUBLOCALITY == "Queens" ~ "Queens County",
+    TRUE ~ SUBLOCALITY  
+  ))
+```
+
+
+#filter the data to remove outliers, and the type of home for sale to be a house in Queens
+```{r}
+filtered_df <- df %>%
+  filter(PROPERTYSQFT != 2184.207862)%>%
+  filter(TYPE == "House for sale", SUBLOCALITY == "Queens County")
+
+# Check the filtered dataframe
+
+```
+
+
+#Summerize the average price, beds, baths and sqft. Average house for sale price in Queens is $1.1MM with about 4 beds and 2.5 baths and 1,957 sqft
+```{r}
+summary_stats <- filtered_df %>%
+  summarise(
+    count = n(),                             
+    avg_price = mean(PRICE, na.rm = TRUE),   
+    median_price = median(PRICE, na.rm = TRUE),  
+    min_price = min(PRICE, na.rm = TRUE),     
+    max_price = max(PRICE, na.rm = TRUE),     
+    avg_beds = mean(BEDS, na.rm = TRUE),      
+    avg_bath = mean(BATH, na.rm = TRUE),      
+    avg_sqft = mean(PROPERTYSQFT, na.rm = TRUE)  
+  )
+
+# View the summary statistics
+print(summary_stats)
+```
+
+
+# ggplot2
+
+
+#use ggplot to visualize the correlation between Price and sqft, price and beds, Price and baths in queens. Seems like sqfootage and Price have a linear correlation
+```{r}
+ggplot(filtered_df, aes(x = PROPERTYSQFT, y = PRICE)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE) +  
+  labs(x = "Property Square Footage", y = "Price", title = "Price vs. Property Square Footage") +
+  scale_y_continuous(labels = scales::comma_format(scale = 1e-3, suffix = "K")) +
+  theme_minimal()
+
+ggplot(filtered_df, aes(x = BEDS, y = PRICE)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE) +  
+  labs(x = "Beds", y = "Price", title = "Price vs. Beds") +
+  scale_y_continuous(labels = scales::comma_format(scale = 1e-3, suffix = "K")) +
+  theme_minimal()
+
+ggplot(filtered_df, aes(x = BATH, y = PRICE)) +
+  geom_point() +  
+  geom_smooth(method = "lm", se = FALSE) +  
+  labs(x = "Baths", y = "Price", title = "Price vs. Baths") +
+  scale_y_continuous(labels = scales::comma_format(scale = 1e-3, suffix = "K")) +
+  theme_minimal()
+```
+
+## Extended Assignment
+
+Angel was nice enough to provide information on selected properties within the county of Queens.  However, it would now also be helpful to visually present these locations on a map so that the interested parties know exactly where the property may be located.  We will use the base R package to plot the locations of the property and then overlay those locations on a map provided by the leaflet package.  We will start by installing the Leaflet package.  It will check to see if the package has been installed, and if not will install.  If the package has already been installed, the library will be attached.
+
+# Leaflet Package and Library Installation
+```{r package installation, warning=FALSE}
+# Check if the package is installed
+if (!require("leaflet", quietly = TRUE)) {
+  # If not, install the package
+  install.packages("leaflet")
+  # Load the package
+  library("leaflet")
+} else {
+  # If already installed, load the package
+  library("leaflet")
+}
+
+#install.packages("leaflet")
+#library(leaflet)
+```
+
+# Base Plotting of the Locations
+
+In this section we will create a plot of the locations based upon the longitude and latitude data contained in the filtered data set.  Though we are only doing this for the filtered set, we could indeed plot the entire city data set contained within the initial data set.
+
+
+```{r plotting the locations}
+plot(filtered_df$LONGITUDE, filtered_df$LATITUDE,
+     xlim = range(filtered_df$LONGITUDE),
+     ylim = range(filtered_df$LATITUDE),
+     xlab= "Longitude", ylab= "Latitude",
+     main = "Geographic Locations of Properties",
+     col="red", pch=19)
+```
+
+# Leaflet Plotting
+
+In this section we will use the Leaflet package to create an interactive map containing the locations of the properties identified in the filtered_df.  This is an interactive that will allow the person to zoom into the locations, and the location markers will provide the street name.
+
+```{r leaflet}
+leaflet(filtered_df) |> 
+  addTiles() |> 
+  addMarkers(~LONGITUDE, ~LATITUDE, popup = ~as.character(filtered_df$LONG_NAME))
+```
+
+## Separate Function
+
+In this section, I would like to use the Separate function in the Tidyr package to clean up the Broker name so I can make that information available in the interactive map so the person can have both street address and the Broker name.  First we have to clean up the general structure using the grepl function to paste something in front of the single value of NoBroker so we can separate out the remainder of the data set.  Then we will separate the BROKERTITLE column into just the name of the broker.  This could be done a number of ways, but this will be to demonstrate the separate and unite functions.
+
+``` {r separate}
+#Locate the NoBroker value and then add "Brokered by" to the front so that we can easily separate all other values into the Broker column.
+filtered_df$BROKERTITLE <- if_else(grepl("NoBroker", filtered_df$BROKERTITLE), paste0("Brokered by ", filtered_df$BROKERTITLE), filtered_df$BROKERTITLE)
+
+# Now we split off the name of the broker
+filtered_df_sep <- filtered_df |> separate(BROKERTITLE, into = c("drop_char", "Name"), sep = " by ")
+```
+
+## Unite Function
+
+In this section we would like to unite two columns for inclusion in our interactive map-the street address and the broker handling the property.  This will be done by joining the ADDRESS variable with the Name variable with a "----" in between.
+
+```{r unite}
+united_df <- unite(filtered_df_sep, location_broker, ADDRESS, Name, sep = "----")
+```
+
+## Leaflet Plotting #2
+
+Now we will re plot the map and the new markers will identify both the street address and the brokers name handling the property.
+
+```{r leaflet plot #2}
+leaflet(filtered_df) |> 
+  addTiles() |> 
+  addMarkers(~LONGITUDE, ~LATITUDE, popup = ~as.character(united_df$location_broker))
+```
+
+
+## Conclusion
+
+The Leaflet packages allows various options that can alter the marker type, shape, and color, as well as setting the zoom and different map layers.  It is a relatively simple package to use to provide extra information to your projects.  The powerful tools available through the Tidyr package allows for easy transformation and tidying of data for use.
