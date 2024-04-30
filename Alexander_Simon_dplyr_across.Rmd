@@ -206,3 +206,33 @@ Although there are alternative approaches to coding the examples above, `across(
 "Apply a function (or functions) across multiple columns" <https://dplyr.tidyverse.org/reference/across.html>
 
 "Column-wise operations in dplyr" <https://www.r4epi.com/column-wise-operations-in-dplyr>
+
+#Extension by Lucas
+
+I love myself some Ryanair reviews. During my high-school time in Germany we always found it hilarious that people will choose Ryanair for the price, then complain about the service. Should have flown Lufthansa business then..... 
+
+To extend the examples above, I am going to demonstrate how ggplot2 can be implemented when using the across function.
+
+```{r}
+library(ggplot2)
+ryanair_reviews_months = ryanair_reviews %>%
+  group_by(Flight_date) %>%
+    summarise(
+    across(
+      .cols = c('Rating_seat_comfort', 'Rating_service_cabin'),
+      .fns = ~ round(mean(.x, na.rm = TRUE), 2),  # ".x" is a placeholder for the column
+      .names = "{col}_mean"  # append function name ({fn}) to each column name
+    )
+  )
+
+ryanair_reviews_months$Flight_date = as.Date(paste0("01 ", ryanair_reviews_months$Flight_date), format = "%d %B %Y")
+  
+ggplot() +
+  geom_line(data = ryanair_reviews_months, aes(x = Flight_date, y = Rating_seat_comfort_mean, color = "Seat Comfort")) +
+  geom_line(data = ryanair_reviews_months, aes(x = Flight_date, y = Rating_service_cabin_mean, color = "Cabin Service")) +
+  labs(x = "Date", y = "Ratings", color = "Ratings") +
+  scale_color_manual(values = c("Seat Comfort" = "#424C55", "Cabin Service" = "#DD5746"))
+
+```
+
+The data frame was grouped by flight date, then the mean was compted for the cabin service and seat comfort rating. For both it seems like there is a slight downward trend over time, while there also appears to be strong seasonal fluctuations.
