@@ -1,6 +1,6 @@
 ---
 title: "Week 11 Tidyverse Assignment"
-author: "James Naval"
+author: "James Naval, Biyag Dukuray"
 ---
 
 ```{r setup, include=FALSE}
@@ -78,3 +78,90 @@ worldhappiness %>%
 
 ## Conclusion
 From the purrr package in the tidyverse I use the map function to show how to manipulate vector.
+
+## Extension:
+
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+This code sparked my interest in many different dynamics regarding the people of the world and their happiness. I wanted to create visualizations to bring these ideas to life and understand how different dynamics may correlate and what conclusions can be drawn from such correlations.
+
+I first wondered what was the different life expectancy's of the people around the world and what was the ranges and the amount of countries in such ranges. To obtain such result I decided to utilize the TidyVerse package by using 'GGPLOT' to create a density plot of life expectancy in the most recent year of data we have which is 2020.
+
+```{r}
+density_plot_2020 <- ggplot(worldhappiness2020, aes(x = Healthy.life.expectancy.at.birth)) +
+geom_density(fill = "green", alpha = 0.5) + 
+labs(title = "Density Plot of Life Expectancy in 2020",
+  x = "Life Expectancy at Birth",
+  y = "Density")
+
+density_plot_2020
+```
+
+This was a great visualization and I was able to conclude from this that most countries had a life expectancy at birth of 65 to about 72 years of age. The most dense age is 68 which means this is what most countries believe life expectancy will be at birth.
+
+This gave me great insights into the world population and life expectancy but I now wanted to explore the correlation between GDP per capita and Happiness in every country. I originally did this using just the data from 2020 but I wanted to see if these results were consistent across the years. I knew that I wanted this graph to be interactive so I can look at these scores year by year. I discovered and decided to use the 'Plotly' library which helped me create an interactive visualization in which you could look at these plots year by year.
+
+```{r}
+
+Happiness_vs_GDP_Plot <- plot_ly(worldhappiness, x = ~Log.GDP.per.capita, y = ~Life.Ladder, color = ~as.factor(year), type = "scatter", mode = "markers") %>%
+  layout(title = "Happiness Score vs. GDP per Capita (All Years)",
+         xaxis = list(title = "Log GDP per Capita"),
+         yaxis = list(title = "Happiness Score"),
+         colorway = c("#636EFA", "#EF553B", "#00CC96", "#AB63FA", "#FFA15A", "#19D3F3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"),
+         hovermode = "closest",
+         updatemenus = list(
+           list(
+             buttons = list(
+               list(method = "restyle",
+                    args = list("visible", list(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)),
+                    label = "All"),
+               list(method = "restyle",
+                    args = list("visible", list(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2005"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2006"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2007"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2008"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2009"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE)),
+                    label = "2010"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE)),
+                    label = "2011"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE)),
+                    label = "2012"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE)),
+                    label = "2013"),
+               list(method = "restyle",
+                    args = list("visible", list(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE)),
+                    label = "2014")
+             ),
+             direction = "down",
+             showactive = TRUE,
+             x = 0.1,
+             xanchor = "left",
+             y = 1.1,
+             yanchor = "top"
+           )
+         )
+  )
+
+Happiness_vs_GDP_Plot
+```
+
+## Conclusion
+
+This visualization gave me many insights regarding the correlation between a country's GDP per capita and their happiness. I first noticed that all of the scatter plots for every different year was mostly skewed to left which indicated to me that as a country's GDP per capita rises, its Happiness score also increases. I found the best results by simply comparing the plots of 2 years which were relatively 10 years apart. I did 2010 and 2020 which pretty much showed the same things which were left skewed scatter plots that support my theory. Using 'GGPLOT' was great in creating the initial plot which required me to implement 'PLOTLY' to make the scatter plot interactive.
